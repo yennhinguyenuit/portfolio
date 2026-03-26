@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nguyen Yen Nhi | Portfolio</title>
+  <style>
+    :root {
+      --bg: #fff8fb;
+      --bg-soft: #fff1f6;
+      --surface: rgba(255, 255, 255, 0.88);
+      --surface-strong: #ffffff;
+      --line: rgba(214, 123, 160, 0.18);
+      --text: #442c3a;
+      --muted: #866678;
+      --primary: #e88ab1;
+      --primary-dark: #d96a98;
+      --secondary: #f6b6c9;
+      --accent: #c78fb3;
+      --shadow: 0 18px 45px rgba(223, 146, 180, 0.16);
+      --radius: 24px;
+      --max: 1180px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(232,138,177,0.18), transparent 24%),
+        radial-gradient(circle at top right, rgba(246,182,201,0.2), transparent 20%),
+        linear-gradient(180deg, #fffafd 0%, #fff6fa 100%);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(255, 248, 251, 0.78);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(214, 123, 160, 0.12);
+    }
+
+    nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      color: #9d4f72;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      list-style: none;
+    }
+
+    .menu a {
+      color: var(--muted);
+      font-size: 15px;
+      transition: 0.25s ease;
+      font-weight: 600;
+    }
+
+    .menu a:hover {
+      color: #9d4f72;
+    }
+
+    .nav-btn {
+      padding: 11px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(214, 123, 160, 0.18);
+      background: rgba(255,255,255,0.7);
+      color: #9d4f72;
+      transition: 0.25s ease;
+      font-weight: 700;
+    }
+
+    .nav-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .hero {
+      padding: 96px 0 72px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(232,138,177,0.12);
+      border: 1px solid rgba(232,138,177,0.18);
+      color: #b45d84;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 1.04;
+      letter-spacing: -1.6px;
+      color: #7f3f5d;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 span {
+      color: var(--primary-dark);
+    }
+
+    .hero p {
+      max-width: 670px;
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 16px;
+      font-weight: 700;
+      transition: 0.25s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      box-shadow: 0 14px 28px rgba(232,138,177,0.24);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border-color: rgba(214,123,160,0.18);
+      background: rgba(255,255,255,0.75);
+      color: #9d4f72;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(232,138,177,0.12);
+    }
+
+    .hero-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-points span {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(214,123,160,0.15);
+      color: #8c6576;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .card,
+    .panel,
+    .project-card {
+      background: var(--surface);
+      border: 1px solid rgba(214,123,160,0.15);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-card {
+      padding: 26px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,245,249,0.95));
+      border: 1px solid rgba(214,123,160,0.16);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-box {
+      min-height: 330px;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
+      background:
+        linear-gradient(135deg, rgba(232,138,177,0.18), rgba(246,182,201,0.25)),
+        #fff;
+      border: 1px solid rgba(214,123,160,0.16);
+      margin-bottom: 18px;
+    }
+
+    .profile-box div strong {
+      display: block;
+      font-size: 30px;
+      color: #8f4567;
+      margin-bottom: 10px;
+    }
+
+    .profile-box div span {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: 18px;
+      text-align: center;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(214,123,160,0.13);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 22px;
+      color: #8f4567;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    section {
+      padding: 40px 0 92px;
+    }
+
+    .section-heading {
+      margin-bottom: 28px;
+    }
+
+    .section-heading p {
+      color: var(--primary-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .section-heading h2 {
+      color: #8a4463;
+      font-size: clamp(28px, 4vw, 42px);
+      margin-bottom: 10px;
+    }
+
+    .section-heading span {
+      color: var(--muted);
+      max-width: 760px;
+      display: block;
+    }
+
+    .about-grid,
+    .contact-grid,
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .panel {
+      padding: 28px;
+    }
+
+    .about-text p,
+    .contact-text p {
+      color: #735767;
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+
+    .info-list,
+    .timeline,
+    .contact-list,
+    .activities-list,
+    .soft-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .info-item,
+    .timeline-item,
+    .contact-item,
+    .activity-item,
+    .soft-item {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(214,123,160,0.12);
+    }
+
+    .info-item strong,
+    .timeline-item strong,
+    .contact-item strong,
+    .activity-item strong,
+    .soft-item strong {
+      display: block;
+      color: #8f4567;
+      margin-bottom: 4px;
+      font-size: 16px;
+    }
+
+    .info-item span,
+    .timeline-item span,
+    .contact-item span,
+    .activity-item span,
+    .soft-item span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .project-card {
+      padding: 26px;
+      transition: 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 45px rgba(223,146,180,0.22);
+    }
+
+    .project-tag {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(232,138,177,0.12);
+      color: #b45d84;
+      border: 1px solid rgba(232,138,177,0.16);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .project-card h3 {
+      color: #8a4463;
+      font-size: 22px;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-end;
+    }
+
+    .project-meta span {
+      color: #8f6f80;
+      font-size: 13px;
+    }
+
+    .project-meta a {
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill-tags span {
+      padding: 11px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(214,123,160,0.12);
+      color: #8a4463;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .edu-box {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .edu-top {
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.74);
+      border: 1px solid rgba(214,123,160,0.12);
+    }
+
+    .edu-top h3 {
+      color: #8a4463;
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .edu-top p {
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid rgba(214,123,160,0.12);
+      padding: 28px 0 36px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .about-grid,
+      .contact-grid,
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      nav {
+        flex-direction: column;
+        padding: 18px 0;
+      }
+
+      .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+      }
+
+      .hero {
+        padding-top: 72px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .mini-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#home" class="logo">Yen<span>Nhi</span></a>
+        <ul class="menu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#activities">Activities</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="#contact" class="nav-btn">Let’s Connect</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">E-commerce Student • University of Information Technology</div>
+          <h1>Hello, I’m <span>Nguyen Yen Nhi</span></h1>
+          <p>
+            I am an E-commerce student at the University of Information Technology with a strong interest in digital commerce, operations, data analysis, and website development. I enjoy turning academic knowledge into practical work and growing through real projects with both business and analytical thinking.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">View My Projects</a>
+            <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+          </div>
+          <div class="hero-points">
+            <span>Operations & Data Analysis</span>
+            <span>Web Development</span>
+            <span>Market Research</span>
+            <span>Project Coordination</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="profile-box">
+            <div>
+              <strong>Nguyen Yen Nhi</strong>
+              <span>E-commerce student with hands-on experience in online store operations, market research, project coordination, and website development.</span>
+            </div>
+          </div>
+          <div class="mini-stats">
+            <div class="stat">
+              <strong>8.75/10</strong>
+              <span>Current GPA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <p>About Me</p>
+          <h2>Building practical knowledge in e-commerce through real projects</h2>
+          <span>I am especially interested in how large-scale e-commerce platforms operate and how business, operations, data, and digital products connect in real environments.</span>
+        </div>
+
+        <div class="about-grid">
+          <div class="panel about-text">
+            <p>
+              I am currently pursuing a Bachelor’s degree in E-commerce at the University of Information Technology, Vietnam National University Ho Chi Minh City, with an expected graduation year of 2028 and a current GPA of 8.75/10.
+            </p>
+            <p>
+              My goal is to grow in a professional environment where I can strengthen my practical knowledge in e-commerce operations, market analysis, and digital product execution while continuing to improve my analytical and communication skills.
+            </p>
+            <p>
+              Alongside my studies, I have worked on projects involving online store operations, market research, content production workflow, project tracking, and e-commerce website development.
+            </p>
+          </div>
+
+          <div class="panel info-list">
+            <div class="info-item">
+              <strong>Education</strong>
+              <span>Bachelor of E-commerce, University of Information Technology - VNUHCM</span>
+            </div>
+            <div class="info-item">
+              <strong>Expected Graduation</strong>
+              <span>2028</span>
+            </div>
+            <div class="info-item">
+              <strong>Career Interests</strong>
+              <span>E-commerce, Operations, Data Analysis, Web Development</span>
+            </div>
+            <div class="info-item">
+              <strong>English</strong>
+              <span>IELTS 5.5</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <p>Projects</p>
+          <h2>Selected projects from my academic and hands-on experience</h2>
+          <span>These projects reflect the roles, tools, and responsibilities presented in my CV.</span>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-tag">E-commerce Course Project</div>
+            <h3>Herbal Tea E-commerce Development</h3>
+            <p>I managed online store operations across Shopee, TikTok Shop, and Facebook, handled product listings and order flow, and conducted market research using Google Trends, BuzzSumo, and Brand24 to identify consumer interest and product opportunities.</p>
+            <div class="project-meta">
+              <span>Sep 2025 – Jan 2026</span>
+              <a href="#contact">Learn More</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-tag">Operations & Analytics</div>
+            <h3>Video Editing for E-commerce Project</h3>
+            <p>As an Operations & Data Analyst, I tracked more than 30 weekly tasks in ClickUp, built monthly reports and dashboards, and supported coordination for a 9-member team to keep the project moving efficiently and on time.</p>
+            <div class="project-meta">
+              <span>Jan 2026 – Present</span>
+              <a href="#contact">Learn More</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-tag">Web Development</div>
+            <h3>E-commerce Website Development</h3>
+            <p>I served as the team leader for a full-stack e-commerce website project, overseeing task allocation and progress while supporting the integration of frontend and backend features such as authentication, product management, cart, orders, payments, and chatbot support.</p>
+            <div class="project-meta">
+              <span>Jan 2026 – Present</span>
+              <a href="#contact">Learn More</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <p>Skills</p>
+          <h2>Technical abilities and working tools</h2>
+          <span>I combine technical knowledge, market awareness, and project coordination to support e-commerce-related work in a practical way.</span>
+        </div>
+
+        <div class="skills-grid">
+          <div class="panel">
+            <div class="skill-tags">
+              <span>JavaScript</span>
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>Node.js (Express)</span>
+              <span>C++</span>
+              <span>SQL</span>
+              <span>GitHub</span>
+              <span>ClickUp</span>
+              <span>Figma</span>
+              <span>WordPress</span>
+              <span>Google Trends</span>
+              <span>BuzzSumo</span>
+              <span>Market Analysis</span>
+              <span>CapCut</span>
+              <span>Basic SEO</span>
+            </div>
+          </div>
+
+          <div class="panel edu-box">
+            <div class="edu-top">
+              <h3>Core Focus</h3>
+              <p>Front-end and basic full-stack development, e-commerce operations, market research, reporting, and content workflow coordination.</p>
+            </div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <strong>Programming</strong>
+                <span>JavaScript, HTML, CSS, Node.js (Express), C++, SQL</span>
+              </div>
+              <div class="timeline-item">
+                <strong>Tools</strong>
+                <span>ClickUp, GitHub, Figma, WordPress</span>
+              </div>
+              <div class="timeline-item">
+                <strong>Research & Analysis</strong>
+                <span>Google Trends, BuzzSumo, market analysis, reporting support</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="activities">
+      <div class="container">
+        <div class="section-heading">
+          <p>Activities</p>
+          <h2>Leadership, volunteering, and communication experience</h2>
+          <span>These activities helped me become more confident in teamwork, public speaking, and organizing real events.</span>
+        </div>
+
+        <div class="skills-grid">
+          <div class="panel activities-list">
+            <div class="activity-item">
+              <strong>Xuan Tinh Nguyen Volunteer Campaign</strong>
+              <span>Supported a fundraising music program and joined volunteer activities for children at a local primary school.</span>
+            </div>
+            <div class="activity-item">
+              <strong>Faculty MC Team – Youth Union</strong>
+              <span>Worked as an MC for award ceremonies, academic seminars, and faculty events.</span>
+            </div>
+          </div>
+
+          <div class="panel soft-list">
+            <div class="soft-item">
+              <strong>Project Management</strong>
+              <span>Task planning, timeline tracking, team coordination, and progress follow-up.</span>
+            </div>
+            <div class="soft-item">
+              <strong>Leadership & Communication</strong>
+              <span>Clear communication, teamwork support, and confidence in public-facing roles.</span>
+            </div>
+            <div class="soft-item">
+              <strong>Time Management & PR</strong>
+              <span>Organizing priorities effectively and interacting with audiences in real events and collaborative work.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <p>Contact</p>
+          <h2>I’d love to connect for internships and future opportunities</h2>
+          <span>I am open to internships, project collaboration, and opportunities to grow in e-commerce, operations, or digital product environments.</span>
+        </div>
+
+        <div class="contact-grid">
+          <div class="panel contact-list">
+            <div class="contact-item">
+              <strong>Full Name</strong>
+              <span>Nguyen Yen Nhi</span>
+            </div>
+            <div class="contact-item">
+              <strong>Email</strong>
+              <span>yennhinguyen.uit@gmail.com</span>
+            </div>
+            <div class="contact-item">
+              <strong>Phone</strong>
+              <span>0975771727</span>
+            </div>
+            <div class="contact-item">
+              <strong>Location</strong>
+              <span>Bien Hoa City, Dong Nai Province</span>
+            </div>
+          </div>
+
+          <div class="panel contact-text">
+            <p>
+              Thank you for visiting my portfolio. I am excited to keep learning in dynamic environments where I can contribute with curiosity, responsibility, and a strong willingness to improve.
+            </p>
+            <p>
+              If you are looking for an e-commerce student with project experience, teamwork skills, and a practical mindset, I would be happy to connect with you.
+            </p>
+            <div class="hero-actions">
+              <a href="mailto:yennhinguyen.uit@gmail.com" class="btn btn-primary">Send Me an Email</a>
+              <a href="tel:0975771727" class="btn btn-secondary">Call Me</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Nguyen Yen Nhi Portfolio. Designed with a soft and elegant personal style.
+    </div>
+  </footer>
+</body>
+</html>
